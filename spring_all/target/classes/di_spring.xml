@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <bean id="d1_credit" class="com.springlearn.diwithspring.Credit">
+        <!-- intiate a instance var of name "cname" with value of "creditUser" using constructor-arg (constructor) -->
+        	<constructor-arg name="cname" value="creditUser"></constructor-arg>
+        </bean>
+        <bean id="d2_debit" class="com.springlearn.diwithspring.Debit">
+           <!-- intiate a instance var of name "dname" with value of "debitUser" using property (setters) -->
+        	<property name="dname" value="debitUser"></property> 
+        </bean>
+        
+        <!-- craeted a bean for Payment class and used Credit.java (by constructor) and debit.java (by setters) using "ref"  -->
+        <bean id="target_class" class="com.springlearn.diwithspring.Payment">
+        <!-- if CDI and SDI occurs at the same time, then obj is loaded through constructor and after that obj is loaded again with setter , so SI will override CI -->
+        	<constructor-arg ref="d1_credit"></constructor-arg>
+        	<property name="cardType" ref ="d2_debit"></property>
+        </bean>
+</beans>
